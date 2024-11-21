@@ -1,5 +1,6 @@
 const myLibrary = [];
 const addBookButton = document.querySelector("button.add");
+let i = 0;
 
 function Book(title, author, year, genre) {
     this.title = title;
@@ -9,16 +10,27 @@ function Book(title, author, year, genre) {
 }
 
 function addBookToLibrary() {
+    let title = "The Awesome Book";
+    let author = "Kate Schumacher";
+    let year = 2000;
+    let genre = "Romance";
+    let newBook = new Book(title, author, year, genre);
+    putBookOnShelf(title);
+    myLibrary[i] = newBook;
+    i++;
+}
+
+function putBookOnShelf(title) {
     // console.log("We're gona add smthin!");
     let currentCell = document.querySelector("td.empty");
     let div = document.createElement("div");
     if (currentCell == null) {
-        console.log("Yikes! Warning!");
+        // console.log("Yikes! Warning!");
         let p = document.createElement("p");
-        console.log(typeof p);
+        // console.log(typeof p);
         p.textContent = "The library is full! Please take out some books!";
         let warningMessage = document.querySelector(".warning-message");
-        console.log(warningMessage);
+        // console.log(warningMessage);
         warningMessage.appendChild(p);
         return;
     }
@@ -26,7 +38,7 @@ function addBookToLibrary() {
     //     console.log("HEY!");
     //     return;
     // }
-    div.textContent = "A book";
+    div.textContent = title;
     currentCell.classList.add("full");
     currentCell.classList.remove("empty");
     currentCell.appendChild(div);
@@ -34,14 +46,7 @@ function addBookToLibrary() {
 
 addBookButton.addEventListener("click", () => {
     addBookToLibrary();
+    console.log(myLibrary);
 });
-
-addBookToLibrary();
-addBookToLibrary();
-addBookToLibrary();
-addBookToLibrary();
-addBookToLibrary();
-addBookToLibrary();
-addBookToLibrary();
 
 //when a book is added, give it a class
