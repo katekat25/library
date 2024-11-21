@@ -65,12 +65,16 @@
         </table>
         <div class="warning-message"></div>
         <div class="book-inputs">
-            <div class="book-info">
-                <p>Title: <input></p>
-                <p>Author: <input></p>
-                <p>Year: <input></p>
-                <p>Genre: <input></p>
-            </div>
+            <form class="book-info">
+                <label for="title">Title</label>
+                <input type=text id="title" name="title">
+                <label for="author">Author</label>
+                <input type="text" id="author" name="author">
+                <label for="year">Year</label>
+                <input type="number" id="year" name="year">
+                <label for="genre">Genre</label>
+                <input type="text" id="genre" name="genre">
+            </form>
             <button class="add">Add a book</button>
         </div>
         <p>Made by Kate Schumacher</p>
