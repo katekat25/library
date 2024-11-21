@@ -17,7 +17,7 @@ function addDefaultBooks() {
     const neverLet = new Book("Never Let Me Go", "Kazuo Ishiguro", 2005, "science fiction", true);
     const tomorrow = new Book("Tomorrow, and Tomorrow, and Tomorrow", "Gabrielle Zevin", 2022, "fiction", true);
     const court = new Book("A Court of Thorns and Roses", "Sarah J. Maas", 2015, "romance", true);
-    
+
     catalogue(oldMan);
     catalogue(supposedlyFun);
     catalogue(neverLet);
@@ -88,7 +88,7 @@ function catalogue(book) {
 function removeBook() {
     let divToRemove = document.activeElement.parentElement.parentElement;
     let bookIndexToRemove = divToRemove.dataset.bookIndex;
-    
+
     function removeBookFromShelf() {
         divToRemove.innerHTML = "";
     }
@@ -103,8 +103,10 @@ function removeBook() {
             currentCell.classList.remove("full");
             currentCell.classList.add("empty");
             currentCell.innerHTML = "";
-            myLibrary[j].index = j;
-            putBookOnShelf(myLibrary[j]);
+            if (myLibrary[j]) {
+                myLibrary[j].index = j;
+                putBookOnShelf(myLibrary[j]);
+            }
         }
     }
     removeBookFromShelf();
