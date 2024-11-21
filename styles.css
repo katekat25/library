@@ -28,3 +28,8 @@ td {
     display: flex;
     justify-content: center;
 }
+
+.book-info {
+    display: flex;
+    flex-direction: column;
+}
