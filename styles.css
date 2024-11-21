@@ -1,0 +1,19 @@
+div {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+table,
+h1,
+p {
+    align-self: center;
+}
+
+td {
+    text-align: center;
+    border: 1px solid black;
+    width: 200px;
+    height: 50px;
+}
