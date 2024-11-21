@@ -41,13 +41,29 @@ function getNewBook() {
 }
 
 function putBookOnShelf(newBook) {
+
+    function appendElement(name, element, parentSelector, textContent, className) {
+        window[name] = document.createElement(element);
+        let parentElement = document.querySelector(parentSelector);
+        parentElement.appendChild(window[name]);
+        window[name].className = className;
+        if (textContent !== "") {
+            window[name].textContent = textContent;
+        }
+        if (className == "book-container") {
+            console.log("ping");
+            parentElement.dataset.bookIndex = newBook.index;
+        }
+        if (name == "title") {
+            let descriptor = document.createElement("div");
+            descriptor.textContent = newBook.author + ", " + newBook.year;
+            window[name].after(descriptor);
+            descriptor.className = "book-descriptor";
+        }
+    }
+    
     let currentCell = document.querySelector("td.empty");
-    let bookContainer = document.createElement("div");
-    let bookInfoContainer = document.createElement("div");
-    let title = document.createElement("div");
-    let descriptor = document.createElement("div");
-    let deleteButton = document.createElement("button");
-    deleteButton.textContent = "X";
+
     if (currentCell == null) {
         let p = document.createElement("p");
         p.textContent = "The library is full! Please take out some books!";
@@ -55,23 +71,11 @@ function putBookOnShelf(newBook) {
         warningMessage.appendChild(p);
         return;
     }
-    currentCell.appendChild(bookContainer);
-    currentCell.dataset.bookIndex = newBook.index;
-    bookContainer.className = "book-container";
-    currentCell = document.querySelector("td.empty > div");
-    currentCell.appendChild(bookInfoContainer);
-    bookInfoContainer.className = "book-info-container";
-    currentCell = document.querySelector("td.empty > div > div")
-    title.textContent = newBook.title;
-    descriptor.textContent = newBook.author + ", " + newBook.year;
-    currentCell.appendChild(title);
-    title.className = "book-title";
-    title.after(descriptor);
-    currentCell = document.querySelector("td.empty > div");
-    currentCell.appendChild(deleteButton);
-    deleteButton.className = "delete-button";
-    descriptor.className = "book-descriptor";
-    currentCell = document.querySelector("td.empty");
+
+    appendElement("bookContainer", "div", "td.empty", "", "book-container");
+    appendElement("bookInfoContainer", "div", "td.empty > div", "", "book-info-container");
+    appendElement("title", "div", "td.empty > div > div", newBook.title, "book-title");
+    appendElement("deleteButton", "button", "td.empty > div", "X", "delete-button");
     currentCell.classList.add("full");
     currentCell.classList.remove("empty");
 }
