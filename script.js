@@ -2,32 +2,27 @@ const myLibrary = [];
 const addBookButton = document.querySelector("button.add");
 let i = 0;
 
-function Book(title, author, year, genre) {
+function Book(title, author, year, genre, haveRead) {
     this.title = title;
     this.author = author;
     this.year = year;
     this.genre = genre;
     this.index = "";
+    this.haveRead = haveRead;
 }
 
 function addDefaultBooks() {
-    console.log("adding default books");
-    const oldMan = new Book("The Old Man and the Sea", "Ernest Hemingway", 1952, "fiction");
-    const supposedlyFun = new Book("A Supposedly Fun Thing I'll Never Do Again", "David Foster Wallace", 1997, "anthology");
-    const neverLet = new Book("Never Let Me Go", "Kazuo Ishiguro", 2005, "science fiction");
-    const tomorrow = new Book("Tomorrow, and Tomorrow, and Tomorrow", "Gabrielle Zevin", 2022, "fiction");
-    const court = new Book("A Court of Thorns and Roses", "Sarah J. Maas", 2015, "romance");
-
-    addBookToLibrary(oldMan);
-    putBookOnShelf(oldMan);
-    addBookToLibrary(supposedlyFun);
-    putBookOnShelf(supposedlyFun);
-    addBookToLibrary(neverLet);
-    putBookOnShelf(neverLet)
-    addBookToLibrary(tomorrow);
-    putBookOnShelf(tomorrow)
-    addBookToLibrary(court);
-    putBookOnShelf(court);
+    const oldMan = new Book("The Old Man and the Sea", "Ernest Hemingway", 1952, "fiction", true);
+    const supposedlyFun = new Book("A Supposedly Fun Thing I'll Never Do Again", "David Foster Wallace", 1997, "anthology", true);
+    const neverLet = new Book("Never Let Me Go", "Kazuo Ishiguro", 2005, "science fiction", true);
+    const tomorrow = new Book("Tomorrow, and Tomorrow, and Tomorrow", "Gabrielle Zevin", 2022, "fiction", true);
+    const court = new Book("A Court of Thorns and Roses", "Sarah J. Maas", 2015, "romance", true);
+    
+    catalogue(oldMan);
+    catalogue(supposedlyFun);
+    catalogue(neverLet);
+    catalogue(tomorrow);
+    catalogue(court);
 }
 
 function getNewBook() {
@@ -35,9 +30,9 @@ function getNewBook() {
     let author = document.getElementById("author").value;
     let year = document.getElementById("year").value;
     let genre = document.getElementById("genre").value;
-    let newBook = new Book(title, author, year, genre);
-    addBookToLibrary(newBook);
-    putBookOnShelf(newBook);
+    let haveRead = document.getElementById("have-read").checked;
+    let newBook = new Book(title, author, year, genre, haveRead);
+    catalogue(newBook);
 }
 
 function putBookOnShelf(newBook) {
@@ -51,7 +46,6 @@ function putBookOnShelf(newBook) {
             window[name].textContent = textContent;
         }
         if (className == "book-container") {
-            console.log("ping");
             parentElement.dataset.bookIndex = newBook.index;
         }
         if (name == "title") {
@@ -61,7 +55,7 @@ function putBookOnShelf(newBook) {
             descriptor.className = "book-descriptor";
         }
     }
-    
+
     let currentCell = document.querySelector("td.empty");
 
     if (currentCell == null) {
@@ -81,45 +75,34 @@ function putBookOnShelf(newBook) {
 }
 
 function addBookToLibrary(newBook) {
-    console.log("adding book to library");
-    console.log("i is " + i);
     myLibrary[i] = newBook;
     newBook.index = i;
     i++;
-    console.log("now i is " + i);
+}
+
+function catalogue(book) {
+    addBookToLibrary(book);
+    putBookOnShelf(book);
 }
 
 function removeBook() {
     let divToRemove = document.activeElement.parentElement.parentElement;
-    console.log(divToRemove);
     let bookIndexToRemove = divToRemove.dataset.bookIndex;
-    console.log("Preparing to remove " + myLibrary[bookIndexToRemove].title + " at index " + bookIndexToRemove);
-
+    
     function removeBookFromShelf() {
-        console.log("Entering removeBookFromShelf");
         divToRemove.innerHTML = "";
-        console.log("Removed book from shelf");
     }
     function removeBookFromLibrary() {
-        console.log("Entering removeBookFromLibrary");
         myLibrary.splice(bookIndexToRemove, 1);
         i--;
-        console.log("Removed book from library. The new library is as follows")
-        console.log(myLibrary);
-        console.log("This new library has " + myLibrary.length + " books in it");
     }
     function shiftBooksLeft() {
-        console.log("Entering shiftBooksLeft");
         let nextBookToRemove = Number(bookIndexToRemove);
-        console.log("We're next removing a book from shelf slot " + nextBookToRemove);
-        console.log("Next book index to remove from shelf is " + nextBookToRemove);
         for (let j = nextBookToRemove; j < myLibrary.length + 1; j++) {
-            console.log("Trying to find a cell with dataset " + '[data-book-index="' + j + '"]');
             let currentCell = document.querySelector('[data-book-index="' + j + '"]');
             currentCell.classList.remove("full");
             currentCell.classList.add("empty");
             currentCell.innerHTML = "";
-            console.log("Now shifting book " + myLibrary[j] + " to the left. It has index " + myLibrary[j].index);
             myLibrary[j].index = j;
             putBookOnShelf(myLibrary[j]);
         }
@@ -127,7 +110,6 @@ function removeBook() {
     removeBookFromShelf();
     removeBookFromLibrary();
     shiftBooksLeft();
-    console.log("I've completed every 'remove' function.");
 }
 
 addDefaultBooks();
@@ -136,7 +118,6 @@ console.log(myLibrary);
 addBookButton.addEventListener("click", () => {
     event.preventDefault();
     getNewBook();
-    console.log(myLibrary);
 });
 
 document.addEventListener("click", function (e) {
@@ -146,7 +127,7 @@ document.addEventListener("click", function (e) {
     }
 });
 
-//remove book from library button
+
 //"read" checkbox
 //make genre input a dropdown menu
 //add function to sort books by name, year, etc?
