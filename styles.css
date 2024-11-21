@@ -1,4 +1,10 @@
-div {
+* {
+    border: 1px solid red;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -16,4 +22,9 @@ td {
     border: 1px solid black;
     width: 200px;
     height: 50px;
+}
+
+.book-inputs {
+    display: flex;
+    justify-content: center;
 }
