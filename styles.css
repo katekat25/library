@@ -24,12 +24,12 @@ td {
     height: 50px;
 }
 
-.book-inputs {
+.book-info {
     display: flex;
     justify-content: center;
 }
 
-.book-info {
+.book-inputs {
     display: flex;
     flex-direction: column;
 }
