@@ -15,12 +15,12 @@ function addBookToLibrary() {
     let year = 2000;
     let genre = "Romance";
     let newBook = new Book(title, author, year, genre);
-    putBookOnShelf(title);
     myLibrary[i] = newBook;
     i++;
+    putBookOnShelf(newBook);
 }
 
-function putBookOnShelf(title) {
+function putBookOnShelf(newBook) {
     // console.log("We're gona add smthin!");
     let currentCell = document.querySelector("td.empty");
     let div = document.createElement("div");
@@ -38,7 +38,7 @@ function putBookOnShelf(title) {
     //     console.log("HEY!");
     //     return;
     // }
-    div.textContent = title;
+    div.textContent = newBook.title;
     currentCell.classList.add("full");
     currentCell.classList.remove("empty");
     currentCell.appendChild(div);
