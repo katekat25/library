@@ -10,10 +10,10 @@ function Book(title, author, year, genre) {
 }
 
 function addBookToLibrary() {
-    let title = "The Awesome Book";
-    let author = "Kate Schumacher";
-    let year = 2000;
-    let genre = "Romance";
+    let title = document.getElementById("title").value;
+    let author = document.getElementById("author").value;
+    let year = document.getElementById("year").value;
+    let genre = document.getElementById("genre").value;
     let newBook = new Book(title, author, year, genre);
     myLibrary[i] = newBook;
     i++;
@@ -45,6 +45,7 @@ function putBookOnShelf(newBook) {
 }
 
 addBookButton.addEventListener("click", () => {
+    event.preventDefault();
     addBookToLibrary();
     console.log(myLibrary);
 });
