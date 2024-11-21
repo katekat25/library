@@ -1,5 +1,5 @@
 const myLibrary = [];
-const table = document.querySelector("table");
+const addBookButton = document.querySelector("button");
 
 function Book(title, author, year, genre) {
     this.title = title;
@@ -18,6 +18,10 @@ function addBookToLibrary() {
     currentCell.classList.remove("empty");
     currentCell.appendChild(div);
 }
+
+addBookButton.addEventListener("click", () => {
+    addBookToLibrary();
+});
 
 addBookToLibrary();
 addBookToLibrary();
