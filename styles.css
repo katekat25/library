@@ -42,7 +42,6 @@ td {
 }
 
 .book-info-container {
-    border: 4px solid blue;
     height: inherit;
     display: flex;
     flex-direction: column;
