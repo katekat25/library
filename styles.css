@@ -24,20 +24,29 @@ td {
     height: 50px;
 }
 
-.book-info {
+.book-form {
     display: flex;
     justify-content: center;
 }
 
-.book-inputs {
+.book-form-inputs {
     display: flex;
     flex-direction: column;
 }
 
 .book-container {
+    height: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.book-info-container {
+    border: 4px solid blue;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .delete-button {

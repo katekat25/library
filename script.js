@@ -9,6 +9,25 @@ function Book(title, author, year, genre) {
     this.genre = genre;
 }
 
+function addDefaultBooks() {
+    const oldMan = new Book("The Old Man and the Sea", "Ernest Hemingway", 1952, "fiction");
+    const supposedlyFun = new Book("A Supposedly Fun Thing I'll Never Do Again", "David Foster Wallace", 1997, "anthology");
+    const neverLet = new Book("Never Let Me Go", "Kazuo Ishiguro", 2005, "science fiction");
+    const tomorrow = new Book("Tomorrow, and Tomorrow, and Tomorrow", "Gabrielle Zevin", 2022, "fiction");
+    const court = new Book("A Court of Thorns and Roses", "Sarah J. Maas", 2015, "romance");
+
+    addBookToLibrary(oldMan);
+    putBookOnShelf(oldMan);
+    addBookToLibrary(supposedlyFun);
+    putBookOnShelf(supposedlyFun);
+    addBookToLibrary(neverLet);
+    putBookOnShelf(neverLet)
+    addBookToLibrary(tomorrow);
+    putBookOnShelf(tomorrow)
+    addBookToLibrary(court);
+    putBookOnShelf(court);
+}
+
 function getNewBook() {
     let title = document.getElementById("title").value;
     let author = document.getElementById("author").value;
@@ -65,23 +84,7 @@ addBookButton.addEventListener("click", () => {
     console.log(myLibrary);
 });
 
-const oldMan = new Book("The Old Man and the Sea", "Ernest Hemingway", 1952, "fiction");
-const supposedlyFun = new Book("A Supposedly Fun Thing I'll Never Do Again", "David Foster Wallace", 1997, "anthology");
-const neverLet = new Book("Never Let Me Go", "Kazuo Ishiguro", 2005, "science fiction");
-const tomorrow = new Book("Tomorrow, and Tomorrow, and Tomorrow", "Gabrielle Zevin", 2022, "fiction");
-const court = new Book("A Court of Thorns and Roses", "Sarah J. Maas", 2015, "romance");
-
-addBookToLibrary(oldMan);
-putBookOnShelf(oldMan);
-addBookToLibrary(supposedlyFun);
-putBookOnShelf(supposedlyFun);
-addBookToLibrary(neverLet);
-putBookOnShelf(neverLet)
-addBookToLibrary(tomorrow);
-putBookOnShelf(tomorrow)
-addBookToLibrary(court);
-putBookOnShelf(court);
-
+addDefaultBooks();
 console.log(myLibrary);
 
 //remove book from library button
@@ -90,4 +93,4 @@ console.log(myLibrary);
 //add function to sort books by name, year, etc?
 //display all info on book
 //color book based on genre
-    //add legend based on genre colors
+//add legend based on genre colors
