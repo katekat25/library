@@ -23,7 +23,8 @@ function addBookToLibrary() {
 function putBookOnShelf(newBook) {
     // console.log("We're gona add smthin!");
     let currentCell = document.querySelector("td.empty");
-    let div = document.createElement("div");
+    let title = document.createElement("div");
+    let descriptor = document.createElement("div");
     if (currentCell == null) {
         // console.log("Yikes! Warning!");
         let p = document.createElement("p");
@@ -38,10 +39,12 @@ function putBookOnShelf(newBook) {
     //     console.log("HEY!");
     //     return;
     // }
-    div.textContent = newBook.title;
+    title.textContent = newBook.title;
+    descriptor.textContent = newBook.author + " " + newBook.year;
+    currentCell.appendChild(title);
+    title.after(descriptor);
     currentCell.classList.add("full");
     currentCell.classList.remove("empty");
-    currentCell.appendChild(div);
 }
 
 addBookButton.addEventListener("click", () => {
@@ -50,4 +53,10 @@ addBookButton.addEventListener("click", () => {
     console.log(myLibrary);
 });
 
-//when a book is added, give it a class
+//remove book from library button
+//"read" checkbox
+//make genre input a dropdown menu
+//add function to sort books by name, year, etc?
+//display all info on book
+//color book based on genre
+    //add legend based on genre colors
