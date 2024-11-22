@@ -139,6 +139,6 @@ button[type="submit"] {
     background-color: tan;
 }
 
-.read:after {
-    font-style: italic;
+.read {
+    text-decoration: black underline;
 }

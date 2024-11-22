@@ -133,9 +133,5 @@ document.addEventListener("click", function (e) {
 });
 
 
-//"read" checkbox
-//make genre input a dropdown menu
 //add function to sort books by name, year, etc?
-//display all info on book
-//color book based on genre
 //add legend based on genre colors
