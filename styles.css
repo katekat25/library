@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Nova+Cut&display=swap');
+
 * {
-    border: 1px solid red;
     margin: 0;
     padding: 0;
+    font-family: "Nova Cut", serif;
 }
 
 .container {
@@ -48,8 +50,54 @@ td {
     justify-content: space-around;
 }
 
+button[type="submit"] {
+    height: 50px;
+    align-self: center;
+}
+
 .delete-button {
     height: 20px;
     width: 20px;
     flex-basis: 0;
+}
+
+.nonfiction {
+    background-color: lightgray;
+}
+
+.fiction {
+    background-color: lightblue;
+}
+
+.anthology {
+    background-color:yellow;
+}
+
+.biography {
+    background-color: lightgreen;
+}
+
+.scifi {
+    background-color: lightsalmon;
+}
+
+.fantasy {
+    background-color: lavender;
+}
+
+.romance {
+    background-color: lightpink;
+}
+
+.horror {
+    background-color: lightcoral;
+}
+
+.historical {
+    background-color: tan;
+}
+
+.read {
+    background-image: url("stripes.jpg");
+    background-blend-mode: lighten;
 }

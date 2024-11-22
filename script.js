@@ -14,7 +14,7 @@ function Book(title, author, year, genre, haveRead) {
 function addDefaultBooks() {
     const oldMan = new Book("The Old Man and the Sea", "Ernest Hemingway", 1952, "fiction", true);
     const supposedlyFun = new Book("A Supposedly Fun Thing I'll Never Do Again", "David Foster Wallace", 1997, "anthology", true);
-    const neverLet = new Book("Never Let Me Go", "Kazuo Ishiguro", 2005, "science fiction", true);
+    const neverLet = new Book("Never Let Me Go", "Kazuo Ishiguro", 2005, "scifi", true);
     const tomorrow = new Book("Tomorrow, and Tomorrow, and Tomorrow", "Gabrielle Zevin", 2022, "fiction", true);
     const court = new Book("A Court of Thorns and Roses", "Sarah J. Maas", 2015, "romance", true);
 
@@ -47,6 +47,10 @@ function putBookOnShelf(newBook) {
         }
         if (className == "book-container") {
             parentElement.dataset.bookIndex = newBook.index;
+            window[name].classList.add(newBook.genre);
+            if(newBook.haveRead == true) {
+                window[name].classList.add("read");
+            }
         }
         if (name == "title") {
             let descriptor = document.createElement("div");
