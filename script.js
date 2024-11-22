@@ -26,13 +26,19 @@ function addDefaultBooks() {
 }
 
 function getNewBook() {
-    let title = document.getElementById("title").value;
-    let author = document.getElementById("author").value;
-    let year = document.getElementById("year").value;
-    let genre = document.getElementById("genre").value;
-    let haveRead = document.getElementById("have-read").checked;
-    let newBook = new Book(title, author, year, genre, haveRead);
-    catalogue(newBook);
+    const shelfSpace = 18;
+    if (i < shelfSpace) {
+        let title = document.getElementById("title").value;
+        let author = document.getElementById("author").value;
+        let year = document.getElementById("year").value;
+        let genre = document.getElementById("genre").value;
+        let haveRead = document.getElementById("have-read").checked;
+        let newBook = new Book(title, author, year, genre, haveRead);
+        catalogue(newBook);
+    } else {
+        alert("The library is full! Remove some books before adding more.");
+        return;
+    }
 }
 
 function putBookOnShelf(newBook) {
@@ -48,7 +54,7 @@ function putBookOnShelf(newBook) {
         if (className == "book-container") {
             parentElement.dataset.bookIndex = newBook.index;
             window[name].classList.add(newBook.genre);
-            if(newBook.haveRead == true) {
+            if (newBook.haveRead == true) {
                 window[name].classList.add("read");
             }
         }
@@ -61,27 +67,20 @@ function putBookOnShelf(newBook) {
     }
 
     let currentCell = document.querySelector("td.empty");
-
-    if (currentCell == null) {
-        let p = document.createElement("p");
-        p.textContent = "The library is full! Please take out some books!";
-        let warningMessage = document.querySelector(".warning-message");
-        warningMessage.appendChild(p);
-        return;
-    }
-
     appendElement("bookContainer", "div", "td.empty", "", "book-container");
     appendElement("bookInfoContainer", "div", "td.empty > div", "", "book-info-container");
     appendElement("title", "div", "td.empty > div > div", newBook.title, "book-title");
-    appendElement("deleteButton", "button", "td.empty > div", "X", "delete-button");
+    appendElement("deleteButton", "button", "td.empty > div", "", "delete-button");
     currentCell.classList.add("full");
     currentCell.classList.remove("empty");
+
 }
 
 function addBookToLibrary(newBook) {
     myLibrary[i] = newBook;
     newBook.index = i;
     i++;
+
 }
 
 function catalogue(book) {
