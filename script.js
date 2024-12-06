@@ -2,13 +2,15 @@ const myLibrary = [];
 const addBookButton = document.querySelector("button.add");
 let i = 0;
 
-function Book(title, author, year, genre, haveRead) {
-    this.title = title;
-    this.author = author;
-    this.year = year;
-    this.genre = genre;
-    this.index = "";
-    this.haveRead = haveRead;
+class Book {
+    constructor(title, author, year, genre, haveRead) {
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.genre = genre;
+        this.index = "";
+        this.haveRead = haveRead;
+    }
 }
 
 function addDefaultBooks() {
